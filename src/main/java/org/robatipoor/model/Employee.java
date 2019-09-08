@@ -13,7 +13,6 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // @Column()
     private Long id;
 
     @Size(max = 30)

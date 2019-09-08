@@ -10,8 +10,8 @@
 		<!-- &createDatabaseIfNotExist=true&useUnicode=yes&characterEncoding=UTF-8 -->
 		<!-- <property name="connection.url">jdbc:mysql://localhost:3306/geekoffdb?useSSL=false</property> -->
 		<property name="connection.url">jdbc:postgresql://localhost:5432/geekoffdb</property>
-		<property name="connection.username">*********</property>
-		<property name="connection.password">*********</property>
+		<property name="connection.username">geekoff</property>
+		<property name="connection.password">mnaahgdsiuIU</property>
 
 		<!-- JDBC connection pool settings ... using built-in test pool -->
 		<property name="connection.pool_size">2</property>
