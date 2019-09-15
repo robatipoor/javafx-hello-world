@@ -3,13 +3,19 @@ package org.robatipoor.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
+import com.github.naoghuman.lib.i18n.core.I18NBindingBuilder;
+
+import org.robatipoor.App;
 import org.robatipoor.dao.EmployeeDAOImpl;
 import org.robatipoor.model.Employee;
 import org.robatipoor.service.EmployeeService;
 import org.robatipoor.util.Resources;
 
+import javafx.beans.binding.StringBinding;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +27,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -82,13 +89,34 @@ public class MainListController implements Initializable {
                 root = FXMLLoader.load(Resources.getURLFXMLFile("save-employee"));
                 Stage stage = new Stage();
                 stage.setTitle("Save Employee");
-                stage.setScene(new Scene(root, 600, 450));
-                stage.show();
+                StackPane pane = new StackPane(App.pane);
+                App.pane.setVisible(false);
+                App.pane.toBack();
+                ;
+                pane.getChildren().add(root);
+                // Creating a scene object
+                Scene scene = new Scene(pane);
+                App.stage.setScene(scene);
+                // stage.setScene(new Scene(root, 600, 450));
+                // stage.show();
                 // Hide this current window (if this is what you want)
                 // ((Node) (event.getSource())).getScene().getWindow().hide();
             } catch (Exception e) {
                 System.out.println(e.toString());
             }
+        });
+        this.bind(firstname.textProperty(), "firstname2");
+        this.bind(lastname.textProperty(), "lastname2");
+        this.bind(birthday.textProperty(), "birthday2");
+        this.bind(age.textProperty(), "age1");
+        this.bind(closeButton.textProperty(), "closeButton");
+        this.bind(newEmployeeButton.textProperty(), "newEmployeeButton");
+    }
+
+    private void bind(final StringProperty stringProperty, final String key) {
+        final Optional<StringBinding> optionalStringBinding = I18NBindingBuilder.bind().key(key).build();
+        optionalStringBinding.ifPresent(stringBinding -> {
+            stringProperty.bind(stringBinding);
         });
     }
 }

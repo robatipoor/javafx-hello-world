@@ -1,12 +1,12 @@
 package org.robatipoor.util;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * HibernateUtils
@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 public class HibernateUtils {
 	private static StandardServiceRegistry registry;
 	private static SessionFactory sessionFactory;
-	private static final Logger LOG = LoggerFactory.getLogger(HibernateUtils.class);
+	private static final Logger LOG = LogManager.getLogger(HibernateUtils.class);
 
 	public static SessionFactory getSessionFactory() {
 		if (sessionFactory == null) {
@@ -31,7 +31,7 @@ public class HibernateUtils {
 
 				// Create SessionFactory
 				sessionFactory = metadata.getSessionFactoryBuilder().build();
-				LOG.info("Create SessionFactory Successful");
+				// LOG.info("Create SessionFactory Successful");
 
 			} catch (Exception e) {
 				e.printStackTrace();

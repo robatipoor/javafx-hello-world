@@ -2,16 +2,16 @@ package org.robatipoor.dao;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.robatipoor.model.Employee;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * CompanyDaoImpl
  */
 public class EmployeeDAOImpl extends SessionManager implements InterfaceDAO<Employee, Long> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(EmployeeDAOImpl.class);
+    private static final Logger LOG = LogManager.getLogger(EmployeeDAOImpl.class);
 
     public EmployeeDAOImpl() {
     }
@@ -34,7 +34,7 @@ public class EmployeeDAOImpl extends SessionManager implements InterfaceDAO<Empl
         try {
             getCurrentSession().save(entity);
         } catch (Exception e) {
-            LOG.error("Save Employee Faild {}", e.toString());
+            // LOG.error("Save Employee Faild {}", e.toString());
             return false;
         }
         return true;
@@ -45,7 +45,7 @@ public class EmployeeDAOImpl extends SessionManager implements InterfaceDAO<Empl
         try {
             getCurrentSession().delete(entity);
         } catch (Exception e) {
-            LOG.error("Delete Employee Faild {}", e.toString());
+            // LOG.error("Delete Employee Faild {}", e.toString());
             return false;
         }
         return true;
@@ -56,7 +56,7 @@ public class EmployeeDAOImpl extends SessionManager implements InterfaceDAO<Empl
         try {
             getCurrentSession().update(entity);
         } catch (Exception e) {
-            LOG.error("Update Employee Faild {}", e.toString());
+            // LOG.error("Update Employee Faild {}", e.toString());
             return false;
         }
         return true;
